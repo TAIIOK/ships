@@ -1,9 +1,9 @@
-#include <heder.h>
+#include <game.h>
 
- game newgame;
- gameboard newboard;
+game newgame;
+gameboard newboard;
 
-bool startgame()
+bool StartGame()
 {
 
     cout << "\n";
@@ -30,9 +30,9 @@ bool startgame()
             cin>>newgame.computerdificult;
         while(newgame.computerdificult!=1 && newgame.computerdificult!=2 && newgame.computerdificult!=3);
     }
-    addShips();
+    AddShips();
     ResetBoard();
-    placeships(newgame.gametype);
+    PlaceShips(newgame.gametype);
 
     newgame.gameRunning = true;
 
@@ -76,7 +76,7 @@ bool startgame()
                 newgame.currentPlayer = (newgame.currentPlayer == 1) ? 2 : 1;
             }
             else
-                computermove(-1,-1);
+                ComputerMove(-1,-1);
         }
 
     } while (newgame.gameRunning);
@@ -139,34 +139,34 @@ gameboard::PLACESHIPS  UserInputShipPlacement(int thisShip, int playernumber)
     }
     if(x+newboard.ship[thisShip].length>10 && d==0)
     {
-         cout<<"wrong position\n";
+        cout<<"wrong position\n";
         return tmp;
     }
 
     if(y+newboard.ship[thisShip].length>10 && d==1)
     {
         cout<<"wrong position\n";
-       return tmp;
+        return tmp;
     }
     for(int k=0;k<=newboard.ship[thisShip].length;k++)
     {
         if(d==0)
         {
-            if(!checkpos(playernumber,x+k,y))
+            if(!CheckPos(playernumber,x+k,y))
             {
                 cout<<"Wrong position \n";
                 return tmp;
             }
         }
 
-            if(d==1)
+        if(d==1)
+        {
+            if(!CheckPos(playernumber,x,y+k))
             {
-                if(!checkpos(playernumber,x,y+k))
-                {
-                    cout<<"Wrong position \n";
-                    return tmp;
-                }
+                cout<<"Wrong position \n";
+                return tmp;
             }
+        }
 
     }
     tmp.direction = (DIRECTION)d;
@@ -186,7 +186,7 @@ bool UserInputAttack(int& x, int& y, int theplayer)
     return goodInput;
 }
 
-void placeships(int gametype)
+void PlaceShips(int gametype)
 {
 
     for (newgame.players=1; newgame.players<1+newgame.gametype; newgame.players++)
@@ -269,7 +269,7 @@ void placeships(int gametype)
                     {
                         if(d==0)
                         {
-                            if(!checkpos(2,x+k,y))
+                            if(!CheckPos(2,x+k,y))
                             {
                                 flag=true;
                             }
@@ -279,7 +279,7 @@ void placeships(int gametype)
 
                         if(d==1)
                         {
-                            if(!checkpos(2,x,y+k))
+                            if(!CheckPos(2,x,y+k))
                             {
                                 flag=true;
                             }
@@ -310,7 +310,7 @@ void placeships(int gametype)
                     addShip.shipType.onGrid[i].X = addShip.shipType.onGrid[i-1].X;
                 }
 
-              newboard.player[2].grid[addShip.shipType.onGrid[i].X][addShip.shipType.onGrid[i].Y] = SHIPS;
+                newboard.player[2].grid[addShip.shipType.onGrid[i].X][addShip.shipType.onGrid[i].Y] = SHIPS;
 
 
             }
@@ -320,7 +320,7 @@ void placeships(int gametype)
     }
 }
 
-void addShips()
+void AddShips()
 {
     newboard.ship[0].name = "Cruiser";
     newboard.ship[0].length = 2;

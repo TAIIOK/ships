@@ -23,5 +23,4 @@ SOURCES += main.cpp \
 HEADERS += \
     game.h \
     computer.h \
-    checkcoords.h \
-    heder.h
+    checkcoords.h

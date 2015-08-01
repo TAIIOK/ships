@@ -1,6 +1,6 @@
 #include <checkcoords.h>
-#include <heder.h>
-bool checkpos(int currentplayer,int x,int y)
+
+bool CheckPos(int currentplayer,int x,int y)
 {
     if(newboard.player[currentplayer].grid[x+1][y] == SHIPS)
     {
@@ -37,7 +37,7 @@ bool checkpos(int currentplayer,int x,int y)
     return true;
 }
 
-bool check(int &x ,int &y)
+bool Check(int &x ,int &y)
 {
     if(x!=-1 && y!=-1)
     {

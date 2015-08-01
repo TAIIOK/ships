@@ -1,11 +1,10 @@
 #pragma once
 #ifndef COMPUTER_H
 #define COMPUTER_H
-#include <heder.h>
+#include <game.h>
 
-void GetrandomCoords(int &x, int &y);
-
-bool computermove(int x,int y);
+void GetRandomCoords(int &x, int &y);
+bool ComputerMove(int x,int y);
 
 
 #endif  COMPUTER_H

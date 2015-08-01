@@ -1,6 +1,5 @@
-
 #include <computer.h>
-void GetrandomCoords(int &x, int &y)
+void GetRandomCoords(int &x, int &y)
 {
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
@@ -8,7 +7,7 @@ void GetrandomCoords(int &x, int &y)
     y=qrand()%10;
 }
 
-bool computermove(int x,int y)
+bool ComputerMove(int x,int y)
 {
     bool status=false;
 
@@ -17,7 +16,7 @@ bool computermove(int x,int y)
         do
         {
 
-            GetrandomCoords(x,y);
+            GetRandomCoords(x,y);
 
         }
         while(newboard.player[1].grid[x][y] != SHIPS && newboard.player[1].grid[x][y] != WATER);
@@ -30,7 +29,7 @@ bool computermove(int x,int y)
             {
                 newgame.gameRunning = false;
             }
-            computermove(x,y);
+            ComputerMove(x,y);
         }
         if (newboard.player[1].grid[x][y] == WATER)
             newboard.player[1].grid[x][y] = MISS;
@@ -42,18 +41,18 @@ bool computermove(int x,int y)
     {
         if(x==-1 && y==-1)
         {
-            GetrandomCoords(x,y);
+            GetRandomCoords(x,y);
         }
         else
         {
-            status=check(x,y);
+            status=Check(x,y);
         }
 
         do
         {
             if(status==false )
             {
-                GetrandomCoords(x,y);
+                GetRandomCoords(x,y);
             }
         }
         while(newboard.player[1].grid[x][y] != SHIPS && newboard.player[1].grid[x][y] != WATER);
@@ -67,7 +66,7 @@ bool computermove(int x,int y)
                 newgame.gameRunning = false;
 
             }
-            computermove(x,y);
+            ComputerMove(x,y);
         }
 
         if (newboard.player[1].grid[x][y] == WATER)
@@ -83,7 +82,7 @@ bool computermove(int x,int y)
         bool flag=true;
         bool random=false;
 
-        status=check(x,y);
+        status=Check(x,y);
         if(status==false)
         {
             for(int f=0;f<27 && flag;f++)
@@ -109,7 +108,7 @@ bool computermove(int x,int y)
             {
                 if(random)
                 {
-                    GetrandomCoords(x,y);
+                    GetRandomCoords(x,y);
                 }
             }
             while(newboard.player[1].grid[x][y] != SHIPS && newboard.player[1].grid[x][y] != WATER);
@@ -124,7 +123,7 @@ bool computermove(int x,int y)
                 newgame.gameRunning = false;
 
             }
-            computermove(x,y);
+            ComputerMove(x,y);
         }
         if (newboard.player[1].grid[x][y] == WATER)
             newboard.player[1].grid[x][y] = MISS;

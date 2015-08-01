@@ -1,11 +1,10 @@
 #pragma once
 #ifndef CHECKCOORDS_H
 #define CHECKCOORDS_H
+#include <game.h>
 
-
-bool checkpos(int currentplayer,int x,int y);
-
-bool check(int &x ,int &y);
+bool CheckPos(int currentplayer,int x,int y);
+bool Check(int &x ,int &y);
 
 #endif  CHECKCOORDS_H
 
