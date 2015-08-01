@@ -45,7 +45,7 @@ bool ComputerMove(int x,int y)
         }
         else
         {
-            status=Check(x,y);
+            status=CheckAroundCell(x,y);
         }
 
         do
@@ -82,7 +82,7 @@ bool ComputerMove(int x,int y)
         bool flag=true;
         bool random=false;
 
-        status=Check(x,y);
+        status=CheckAroundCell(x,y);
         if(status==false)
         {
             for(int f=0;f<27 && flag;f++)

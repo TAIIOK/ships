@@ -1,7 +1,8 @@
 #include <checkcoords.h>
 
-bool CheckPos(int currentplayer,int x,int y)
+bool CheckPosition(int currentplayer,int x,int y)
 {
+
     if(newboard.player[currentplayer].grid[x+1][y] == SHIPS)
     {
         return false;
@@ -37,7 +38,7 @@ bool CheckPos(int currentplayer,int x,int y)
     return true;
 }
 
-bool Check(int &x ,int &y)
+bool CheckAroundCell(int &x ,int &y)
 {
     if(x!=-1 && y!=-1)
     {

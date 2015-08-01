@@ -6,41 +6,47 @@
 #include <string>
 #include <ctime>
 #include "QTime"
+
 #include <computer.h>
 #include <checkcoords.h>
+
 using namespace std;
 
-const int BOARD_WIDTH = 10;
-const int BOARD_HEIGHT = 10;
-const int SHIP_TYPES = 5;
+const int BOARD_WIDTH = 10;//ширина поля
+const int BOARD_HEIGHT = 10;//высота поля
+const int SHIP_TYPES = 5;//количество кораблей
 
-const char WATER= 'W';
-const char HIT = 'X';
-const char SHIPS = 'S';
-const char MISS = '0';
+const char WATER= 'W';//символ воды
+const char HIT = 'X';//символ попадания
+const char SHIPS = 'S';//символ корабля
+const char MISS = '0';//символ промоха
 
+//Пречисление ориентаций горизонтальная и вертикальная
 enum DIRECTION {HORIZONTAL,VERTICAL};
 
+//Структура игровых данных
 struct game{
 public:
-    int gametype;
-    int computerdificult;
-    int gameRunning;
-    int currentPlayer;
-    int aWin;
-    int players;
-    bool goodInput = false;
-    int x,y;
+    int gametype; //тип игры (с ИИ или 2 игроком)
+    int computerdificult; //сложность ИИ
+    int gameRunning;//Игра запущена
+    int currentPlayer;//Текущий игрок
+    int aWin;//Флаг победы
+    int players;//Игроки
+    bool goodInput = false;//Флаг правильного ввода координат
+    int x,y;//координаты
 
 };
-
+//Структура игрового поля
 struct gameboard{
 public:
+    //структура для растановки кораблей
     struct center {
         int X;
         int Y;
 
     };
+    //структура коробля его характеристики
     struct SHIP {
         string name;
         int length;
@@ -48,6 +54,7 @@ public:
         bool hitFlag[5];
     }ship[SHIP_TYPES];
 
+    //игороки
     struct PLAYER {
         char grid[BOARD_WIDTH][BOARD_HEIGHT];
     }player[3];
@@ -59,18 +66,54 @@ public:
 };
 
 extern game newgame;
+
 extern gameboard newboard;
 
+/*!
+ * \brief PlaceShips - Расстановка кораблей
+ * \param gametype - тип игры(для расстановки 2 пользователя или ИИ)
+ */
 void PlaceShips(int gametype);
+/*!
+ * \brief DrawBoard - Нарисовать поле в консоле
+ * \param thisPlayer - Игрок сделавший ход
+ */
 void DrawBoard(int thisPlayer);
+/*!
+ * \brief ResetBoard - Очиста поля для игры
+ */
 void ResetBoard();
+/*!
+ * \brief AddShips - Инициализация короблей
+ */
 void AddShips();
-void GetRandomCoords(int &x, int &y);
 
+/*!
+ * \brief GameOverChec - Функция проверки конца игры
+ * \param enemyPLAYER - Противник
+ * \return - победитель
+ */
 int GameOverCheck(int enemyPLAYER);
+/*!
+ * \brief StartGame - Функция запуска игры
+ * \return - Завершена ли игра
+ */
 bool StartGame();
-bool UserInputAttack(int& x, int& y, int theplayer);
-
+/*!
+ * \brief UserInputAttack - Функция ввода координат пользователя для хода
+ * \param x - x координата
+ * \param y - y координата
+ * \param currentplayer - игрок делающий ход
+ * \return - Верно ли введены координаты
+ */
+bool UserInputAttack(int& x, int& y, int currentplayer);
+/*!
+ * \brief UserInputAttack - Функция для расстановки кораблей пользователя
+ * \param thisShip - текущий корабль (тип корабля)
+ * \param playernumber - номер игрока
+ * \return - текущие положение коробля
+ */
 gameboard::PLACESHIPS UserInputShipPlacement(int thisShip, int playernumber);
+
 #endif  GAME_H
 

@@ -152,7 +152,7 @@ gameboard::PLACESHIPS  UserInputShipPlacement(int thisShip, int playernumber)
     {
         if(d==0)
         {
-            if(!CheckPos(playernumber,x+k,y))
+            if(!CheckPosition(playernumber,x+k,y))
             {
                 cout<<"Wrong position \n";
                 return tmp;
@@ -161,7 +161,7 @@ gameboard::PLACESHIPS  UserInputShipPlacement(int thisShip, int playernumber)
 
         if(d==1)
         {
-            if(!CheckPos(playernumber,x,y+k))
+            if(!CheckPosition(playernumber,x,y+k))
             {
                 cout<<"Wrong position \n";
                 return tmp;
@@ -175,9 +175,9 @@ gameboard::PLACESHIPS  UserInputShipPlacement(int thisShip, int playernumber)
     return tmp;
 }
 
-bool UserInputAttack(int& x, int& y, int theplayer)
+bool UserInputAttack(int& x, int& y, int currentplayer)
 {
-    cout << "\nPLAYER " << theplayer << ", ENTER COORDINATES TO ATTACK: ";
+    cout << "\nPLAYER " << currentplayer << ", ENTER COORDINATES TO ATTACK: ";
     bool goodInput = false;
     cin >> x >> y;
     if (x<0 || x>=BOARD_WIDTH) return goodInput;
@@ -269,7 +269,7 @@ void PlaceShips(int gametype)
                     {
                         if(d==0)
                         {
-                            if(!CheckPos(2,x+k,y))
+                            if(!CheckPosition(2,x+k,y))
                             {
                                 flag=true;
                             }
@@ -279,7 +279,7 @@ void PlaceShips(int gametype)
 
                         if(d==1)
                         {
-                            if(!CheckPos(2,x,y+k))
+                            if(!CheckPosition(2,x,y+k))
                             {
                                 flag=true;
                             }
@@ -433,4 +433,3 @@ void DrawBoard(int thisPlayer)
         }
     }
 }
-
