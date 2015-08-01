@@ -5,7 +5,9 @@
 #include <string>
 #include <ctime>
 #include "QTime"
+
 #include "board.h"
+#include "computer.h"
 
 using namespace std;
 
@@ -55,7 +57,7 @@ struct PLACESHIPS {
 
 
 
-
+int GameOverCheck(int enemyPLAYER);
 bool startgame();
 
 #endif // GAME_H
