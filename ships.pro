@@ -18,9 +18,11 @@ TEMPLATE = app
 SOURCES += main.cpp \
     game.cpp \
     board.cpp \
-    computer.cpp
+    computer.cpp \
+    checkcoords.cpp
 
 HEADERS += \
     game.h \
     board.h \
-    computer.h
+    computer.h \
+    checkcoords.h
