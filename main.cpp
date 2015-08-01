@@ -1,5 +1,5 @@
 #include <QCoreApplication>
-#include <game.h>
+#include <heder.h>
 
 
 int main()

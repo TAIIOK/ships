@@ -25,4 +25,5 @@ HEADERS += \
     game.h \
     board.h \
     computer.h \
-    checkcoords.h
+    checkcoords.h \
+    heder.h

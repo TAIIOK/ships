@@ -7,9 +7,7 @@
 #include <ctime>
 #include "QTime"
 
-#include "board.h"
-#include "computer.h"
-#include "user.h"
+
 
 using namespace std;
 
@@ -49,7 +47,7 @@ struct PLACESHIPS {
 
 
  int gametype;
- int computerdificult;
+  int computerdificult;
   int gameRunning;
   int currentPlayer;
  int aWin;
