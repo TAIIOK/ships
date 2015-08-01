@@ -1,5 +1,137 @@
 #include "board.h"
 
+void placeships(int gametype)
+{
+    for (players=1; players<1+gametype; players++)
+    {
+        for (int thisShip=0; thisShip<SHIP_TYPES; ++thisShip)
+        {
+            system("cls");
+            DrawBoard(gametype);
+
+            cout << "\n";
+            cout << "Player " <<players <<"\n";
+            cout << "Instruction))\n First number is orintation(Horizontal is number 0, Vertical is number 1 )\n Second number is X(top) coordinate \n Third number is Y(left) coordinate\n ";
+            cout << "Your move ship: " <<ship[thisShip].name <<"with lenght " <<ship[thisShip].length<<" ?";
+
+            PLACESHIPS addShip;
+            addShip.shipType.onGrid[0].X = -1;
+            while (addShip.shipType.onGrid[0].X == -1)
+            {
+                addShip = UserInputShipPlacement(thisShip,players);
+            }
+
+            addShip.shipType.length = ship[thisShip].length;
+            addShip.shipType.name = ship[thisShip].name;
+
+            player[players].grid[addShip.shipType.onGrid[0].X][addShip.shipType.onGrid[0].Y] = SHIPS;
+
+            for (int i=1; i<addShip.shipType.length; ++i)
+            {
+                if (addShip.direction == HORIZONTAL)
+                {
+                    addShip.shipType.onGrid[i].X = addShip.shipType.onGrid[i-1].X+1;
+                    addShip.shipType.onGrid[i].Y = addShip.shipType.onGrid[i-1].Y;
+                }
+                if (addShip.direction == VERTICAL)
+                {
+                    addShip.shipType.onGrid[i].Y = addShip.shipType.onGrid[i-1].Y+1;
+                    addShip.shipType.onGrid[i].X = addShip.shipType.onGrid[i-1].X;
+                }
+                player[players].grid[addShip.shipType.onGrid[i].X][addShip.shipType.onGrid[i].Y] = SHIPS;
+            }
+        }
+    }
+    if(gametype==1)
+    {
+        QTime time = QTime::currentTime();
+        qsrand((uint)time.msec());
+
+        for (int thisShip=0; thisShip<SHIP_TYPES; ++thisShip)
+        {
+            int d,x,y;
+            bool flag;
+            PLACESHIPS addShip;
+
+            addShip.shipType.length = ship[thisShip].length;
+            addShip.shipType.name = ship[thisShip].name;
+            do
+            {
+                flag=false;
+                d=qrand()%2;
+                x=qrand()%10;
+                y=qrand()%10;
+                if(d==0)
+                {
+                    if(x+ship[thisShip].length>10 && d==0)
+                    {
+                        flag=true;
+                    }
+                }
+                else if (d==1)
+                {
+                    if(y+ship[thisShip].length>10 && d==1)
+                    {
+                        flag=true;
+                    }
+                }
+                if(!flag)
+                {
+                    for(int k=0;k<=ship[thisShip].length && flag==false;k++)
+                    {
+                        if(d==0)
+                        {
+                            if(!checkpos(2,x+k,y))
+                            {
+                                flag=true;
+                            }
+                            else
+                                flag=false;
+                        }
+
+                        if(d==1)
+                        {
+                            if(!checkpos(2,x,y+k))
+                            {
+                                flag=true;
+                            }
+                            else
+                                flag=false;
+                        }
+                    }
+                }
+            }
+            while(flag);
+
+            addShip.direction = (DIRECTION)d;
+            addShip.shipType.onGrid[0].X = x;
+            addShip.shipType.onGrid[0].Y = y;
+
+            player[2].grid[addShip.shipType.onGrid[0].X][addShip.shipType.onGrid[0].Y] = SHIPS;
+
+            for (int i=1; i<addShip.shipType.length; ++i)
+            {
+                if (addShip.direction == HORIZONTAL)
+                {
+                    addShip.shipType.onGrid[i].X = addShip.shipType.onGrid[i-1].X+1;
+                    addShip.shipType.onGrid[i].Y = addShip.shipType.onGrid[i-1].Y;
+                }
+                if (addShip.direction == VERTICAL)
+                {
+                    addShip.shipType.onGrid[i].Y = addShip.shipType.onGrid[i-1].Y+1;
+                    addShip.shipType.onGrid[i].X = addShip.shipType.onGrid[i-1].X;
+                }
+
+                player[2].grid[addShip.shipType.onGrid[i].X][addShip.shipType.onGrid[i].Y] = SHIPS;
+
+
+            }
+            gameRunning = true;
+            //printtestboard(2);
+        }
+    }
+}
+
 void addShips()
 {
     ship[0].name = "Cruiser";

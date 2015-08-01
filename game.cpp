@@ -1,5 +1,6 @@
 #include "game.h"
 
+
 bool startgame()
 {
     cout << "\n";
@@ -104,5 +105,77 @@ int GameOverCheck(int enemyPLAYER)
         return enemyPLAYER+1;
     else
         return enemyPLAYER-1;
+}
+PLACESHIPS UserInputShipPlacement(int thisShip, int playernumber)
+{
+    int d, x, y;
+
+    PLACESHIPS tmp;
+    tmp.shipType.onGrid[0].X = -1;
+
+    cin >> d >> y >> x;
+
+    if (d!=0 && d!=1)
+    {
+        cout<<"wrong orientation\n";
+        return tmp;
+    }
+    if (x<0 || x>=BOARD_WIDTH)
+    {
+        cout<<"wrong X coordinate\n";
+        return tmp;
+    }
+    if (y<0 || y>=BOARD_HEIGHT)
+    {
+        cout<<"wrong Y coordinate\n";
+        return tmp;
+    }
+    if(x+ship[thisShip].length>10 && d==0)
+    {
+         cout<<"wrong position\n";
+        return tmp;
+    }
+
+    if(y+ship[thisShip].length>10 && d==1)
+    {
+        cout<<"wrong position\n";
+       return tmp;
+    }
+    for(int k=0;k<=ship[thisShip].length;k++)
+    {
+        if(d==0)
+        {
+            if(!checkpos(playernumber,x+k,y))
+            {
+                cout<<"Wrong position \n";
+                return tmp;
+            }
+        }
+
+            if(d==1)
+            {
+                if(!checkpos(playernumber,x,y+k))
+                {
+                    cout<<"Wrong position \n";
+                    return tmp;
+                }
+            }
+
+    }
+    tmp.direction = (DIRECTION)d;
+    tmp.shipType.onGrid[0].X = x;
+    tmp.shipType.onGrid[0].Y = y;
+    return tmp;
+}
+
+bool UserInputAttack(int& x, int& y, int theplayer)
+{
+    cout << "\nPLAYER " << theplayer << ", ENTER COORDINATES TO ATTACK: ";
+    bool goodInput = false;
+    cin >> x >> y;
+    if (x<0 || x>=BOARD_WIDTH) return goodInput;
+    if (y<0 || y>=BOARD_HEIGHT) return goodInput;
+    goodInput = true;
+    return goodInput;
 }
 

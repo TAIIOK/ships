@@ -1,5 +1,6 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
+#ifndef USER_H
+#define USER_H
 
 #include <iostream>
 #include <string>
@@ -8,42 +9,36 @@
 
 #include "board.h"
 #include "computer.h"
+#include "user.h"
 
 using namespace std;
 
-const int BOARD_WIDTH = 10;
-const int BOARD_HEIGHT = 10;
-const int SHIP_TYPES = 5;
+ const int BOARD_WIDTH = 10;
+ const int BOARD_HEIGHT = 10;
+ const int SHIP_TYPES = 5;
 
-const char WATER= 'W';
-const char HIT = 'X';
-const char SHIPS = 'S';
-const char MISS = '0';
-
-int gametype;
-int computerdificult;
-int gameRunning;
-int currentPlayer;
-int aWin;
-
-bool goodInput = false;
-int x,y;
+ const char WATER= 'W';
+ const char HIT = 'X';
+ const char SHIPS = 'S';
+ const char MISS = '0';
 
 enum DIRECTION {HORIZONTAL,VERTICAL};
+
+
 
 struct center {
     int X;
     int Y;
 };
 
-struct SHIP {
+  struct SHIP {
     string name;
     int length;
     center onGrid[5];
     bool hitFlag[5];
 }ship[SHIP_TYPES];
 
-struct PLAYER {
+ struct PLAYER {
     char grid[BOARD_WIDTH][BOARD_HEIGHT];
 }player[3];
 
@@ -53,11 +48,21 @@ struct PLACESHIPS {
 };
 
 
+ int gametype;
+ int computerdificult;
+  int gameRunning;
+  int currentPlayer;
+ int aWin;
+ int players;
 
-
-
+ bool goodInput = false;
+ int x,y;
 
 int GameOverCheck(int enemyPLAYER);
 bool startgame();
+bool UserInputAttack(int& x, int& y, int theplayer);
 
-#endif // GAME_H
+PLACESHIPS UserInputShipPlacement(int thisShip, int playernumber);
+
+#endif  GAME_H
+
