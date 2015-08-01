@@ -27,13 +27,13 @@ enum DIRECTION {HORIZONTAL,VERTICAL};
 //Структура игровых данных
 struct game{
 public:
-    int gametype; //тип игры (с ИИ или 2 игроком)
-    int computerdificult; //сложность ИИ
-    int gameRunning;//Игра запущена
-    int currentPlayer;//Текущий игрок
-    int aWin;//Флаг победы
-    int players;//Игроки
-    bool goodInput = false;//Флаг правильного ввода координат
+    int GameType; //переменная для хранения режима игры
+    int ComputerDificult; //значение уровня сложности Искуственного интелекта
+    int GameRunning;//переменная статуса игры
+    int CurrentPlayer;//переменная указывающая на текущего игрока
+    int Win;//Переменная для контроля завершения игры
+    int Players;//Игроки
+    bool GoodInput = false;//Флаг правильного ввода координат
     int x,y;//координаты
 
 };
