@@ -5,7 +5,8 @@
 #include <string>
 #include <ctime>
 #include "QTime"
-
+#include <computer.h>
+#include <checkcoords.h>
 using namespace std;
 
  const int BOARD_WIDTH = 10;
@@ -71,13 +72,13 @@ extern gameboard newboard;
   void ResetBoard();
   void addShips();
 
-  bool checkpos(int currentplayer,int x,int y);
+//  bool checkpos(int currentplayer,int x,int y);
 
-  bool check(int &x ,int &y);
+//  bool check(int &x ,int &y);
 
   void GetrandomCoords(int &x, int &y);
 
-  bool computermove(int x,int y);
+//  bool computermove(int x,int y);
 
 int GameOverCheck(int enemyPLAYER);
 bool startgame();

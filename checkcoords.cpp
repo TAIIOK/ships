@@ -1,5 +1,5 @@
+#include <checkcoords.h>
 #include <heder.h>
-
 bool checkpos(int currentplayer,int x,int y)
 {
     if(newboard.player[currentplayer].grid[x+1][y] == SHIPS)

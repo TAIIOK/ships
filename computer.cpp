@@ -1,5 +1,5 @@
 
-#include <heder.h>
+#include <computer.h>
 void GetrandomCoords(int &x, int &y)
 {
     QTime time = QTime::currentTime();
