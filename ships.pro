@@ -15,4 +15,12 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    game.cpp \
+    board.cpp \
+    computer.cpp
+
+HEADERS += \
+    game.h \
+    board.h \
+    computer.h
