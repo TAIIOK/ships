@@ -179,7 +179,7 @@ bool UserInputAttack(int& x, int& y, int currentplayer)
 {
     cout << "\nPLAYER " << currentplayer << ", ENTER COORDINATES TO ATTACK: ";
     bool goodInput = false;
-    cin >> x >> y;
+    cin >> y >> x;
     if (x<0 || x>=BOARD_WIDTH) return goodInput;
     if (y<0 || y>=BOARD_HEIGHT) return goodInput;
     goodInput = true;
